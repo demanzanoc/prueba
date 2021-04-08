@@ -26,7 +26,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     @NonNull
     @Override
     public UserAdapter.UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = userInflater.inflate(R.layout.user_list_item, null);
+        View view = userInflater.inflate(R.layout.user_list_item, parent,false);
         return new UserAdapter.UserViewHolder(view);
     }
 
@@ -53,9 +53,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         }
 
         void bindData(final User user){
-            userName.setText(user.getUserName());
-            userPhone.setText(user.getUserPhone());
-            userEmail.setText(user.getUserEmail());
+            userName.setText(user.getName());
+            userPhone.setText(user.getPhone());
+            userEmail.setText(user.getEmail());
         }
     }
 }

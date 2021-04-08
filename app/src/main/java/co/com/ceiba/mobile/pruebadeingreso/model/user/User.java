@@ -2,37 +2,40 @@ package co.com.ceiba.mobile.pruebadeingreso.model.user;
 
 public class User {
 
-    private String userName;
-    private String userPhone;
-    private String userEmail;
+    private String id;
+    private String name;
+    private String email;
+    private String phone;
 
-    public User(String userName, String userPhone, String userEmail) {
-        this.userName = userName;
-        this.userPhone = userPhone;
-        this.userEmail = userEmail;
+    public String getId() {
+        return id;
     }
 
-    public String getUserName() {
-        return userName;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void setNameUser(String userName) {
-        this.userName = userName;
+    public String getName() {
+        return name;
     }
 
-    public String getUserPhone() {
-        return userPhone;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setUserPhone(String userPhone) {
-        this.userPhone = userPhone;
+    public String getEmail() {
+        return email;
     }
 
-    public String getUserEmail() {
-        return userEmail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

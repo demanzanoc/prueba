@@ -1,6 +1,6 @@
 package co.com.ceiba.mobile.pruebadeingreso.rest;
 
-import co.com.ceiba.mobile.pruebadeingreso.interfaces.JsonPlaceHolderApi;
+import co.com.ceiba.mobile.pruebadeingreso.interfaces.rest.JsonApi;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -9,18 +9,17 @@ public class ApiAdapter {
     private ApiAdapter() {
     }
 
-    private static JsonPlaceHolderApi jsonPlaceHolderApi;
+    private static JsonApi jsonApi;
 
-    public static JsonPlaceHolderApi getJsonPlaceHolderApi() {
-
-        if (jsonPlaceHolderApi == null){
+    public static JsonApi getDataUser() {
+        if (jsonApi == null){
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(Endpoints.URL_BASE)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
-            jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+            jsonApi = retrofit.create(JsonApi.class);
         }
-        return jsonPlaceHolderApi;
+        return jsonApi;
     }
 
 }

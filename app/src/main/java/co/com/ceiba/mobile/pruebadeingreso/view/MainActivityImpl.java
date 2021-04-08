@@ -14,15 +14,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import co.com.ceiba.mobile.pruebadeingreso.R;
+import co.com.ceiba.mobile.pruebadeingreso.interfaces.user.UserPresenter;
+import co.com.ceiba.mobile.pruebadeingreso.interfaces.user.UserView;
 import co.com.ceiba.mobile.pruebadeingreso.model.adapter.UserAdapter;
 import co.com.ceiba.mobile.pruebadeingreso.model.user.User;
+import co.com.ceiba.mobile.pruebadeingreso.presenter.user.UserPresenterImpl;
 
-public class MainActivity extends Activity {
+public class MainActivityImpl extends Activity implements UserView {
 
     Context context;
     EditText editTextSearch;
     RecyclerView recyclerViewSearchResults;
-    List<User> userList;
+    UserPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +45,7 @@ public class MainActivity extends Activity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                Toast.makeText(context,"" + editable, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "" + editable, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -51,15 +54,8 @@ public class MainActivity extends Activity {
         context = getApplicationContext();
         editTextSearch = findViewById(R.id.editTextSearch);
         recyclerViewSearchResults = findViewById(R.id.recyclerViewSearchResults);
-        userList = new ArrayList<>();
-        userList.add(new User("david","318","email@email"));
-        userList.add(new User("david2","3182","email@email2"));
-        userList.add(new User("david3","3183","email@email3"));
-
-        UserAdapter userAdapter = new UserAdapter(userList, context);
-        recyclerViewSearchResults.setHasFixedSize(true);
-        recyclerViewSearchResults.setLayoutManager(new LinearLayoutManager(this));
-        recyclerViewSearchResults.setAdapter(userAdapter);
+        presenter = new UserPresenterImpl(this);
+        presenter.getUsers();
     }
 
     @Override
@@ -67,5 +63,17 @@ public class MainActivity extends Activity {
         super.onStart();
     }
 
+    @Override
+    public void showUsers(ArrayList<User> usersList) {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        UserAdapter userAdapter = new UserAdapter(usersList, context);
+        recyclerViewSearchResults.setLayoutManager(linearLayoutManager);
+        recyclerViewSearchResults.setAdapter(userAdapter);
+    }
 
+    @Override
+    public void showMessage(String message) {
+        Toast.makeText(context, "" + message, Toast.LENGTH_SHORT).show();
+    }
 }
