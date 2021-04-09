@@ -1,4 +1,4 @@
-package co.com.ceiba.mobile.pruebadeingreso.database.user;
+package co.com.ceiba.mobile.pruebadeingreso.database.instance;
 
 import android.content.Context;
 

@@ -55,7 +55,7 @@ public class MainActivityImpl extends Activity implements UserView {
         editTextSearch = findViewById(R.id.editTextSearch);
         recyclerViewSearchResults = findViewById(R.id.recyclerViewSearchResults);
         presenter = new UserPresenterImpl(this, context);
-        presenter.getUsers();
+        presenter.getUsersFromDatabase();
     }
 
     @Override

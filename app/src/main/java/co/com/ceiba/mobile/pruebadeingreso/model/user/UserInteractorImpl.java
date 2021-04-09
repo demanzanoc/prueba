@@ -6,6 +6,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import co.com.ceiba.mobile.pruebadeingreso.database.user.GetUserTaskDB;
 import co.com.ceiba.mobile.pruebadeingreso.database.user.SaveUserTaskDB;
 import co.com.ceiba.mobile.pruebadeingreso.interfaces.user.UserInteractor;
 import co.com.ceiba.mobile.pruebadeingreso.interfaces.user.UserPresenter;
@@ -16,20 +17,34 @@ import retrofit2.Response;
 
 public class UserInteractorImpl implements UserInteractor, Callback<List<User>> {
 
-    UserPresenter presenter;
-    List<User> usersList;
-    Context context;
+    private UserPresenter presenter;
+    private List<User> usersList;
+    private Context context;
 
     public UserInteractorImpl(UserPresenter presenter, Context context) {
         this.presenter = presenter;
         this.context = context;
-        usersList = new ArrayList<>();
+        this.usersList = new ArrayList<>();
     }
 
     @Override
-    public void getUsers() {
+    public void getUsersFromApi() {
         Call<List<User>> call = ApiAdapter.getDataUser().getUsers();
         call.enqueue(this);
+    }
+
+    @Override
+    public void getUsersFromDatabase() {
+        new GetUserTaskDB(context, new GetUserTaskDB.Callback() {
+            @Override
+            public void result(ArrayList<User> usersList) {
+                if (usersList.isEmpty())
+                    getUsersFromApi();
+                else{
+                    presenter.showUsers(usersList);
+                }
+            }
+        }).execute();
     }
 
     @Override
@@ -48,7 +63,7 @@ public class UserInteractorImpl implements UserInteractor, Callback<List<User>> 
                     }
                 }).execute((ArrayList<User>) usersList);
             } else {
-                Log.e("onResponseUser", "Null response service"); ///----
+                Log.e("onResponseUser", "Null response service"); ///---
             }
         }
     }

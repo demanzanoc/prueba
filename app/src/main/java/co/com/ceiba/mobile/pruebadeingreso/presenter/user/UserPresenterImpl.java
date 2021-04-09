@@ -33,7 +33,7 @@ public class UserPresenterImpl implements UserPresenter {
     }
 
     @Override
-    public void getUsers() {
-        interactor.getUsers();
+    public void getUsersFromDatabase() {
+        interactor.getUsersFromDatabase();
     }
 }

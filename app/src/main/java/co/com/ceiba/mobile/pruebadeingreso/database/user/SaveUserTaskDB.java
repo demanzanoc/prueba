@@ -19,7 +19,7 @@ public class SaveUserTaskDB extends AsyncTask<ArrayList<User>, Void, String>{
 
     @Override
     protected String doInBackground(ArrayList<User>... usersList) {
-        UserDB.saveUsers(context, usersList[0]);
+        UserDB.saveUsersDB(context, usersList[0]);
         return "Datos almacenados con exito";
     }
 

@@ -10,6 +10,6 @@ public interface UserPresenter {
 
     void showMessage(String message);
 
-    void getUsers();
+    void getUsersFromDatabase();
 
 }
