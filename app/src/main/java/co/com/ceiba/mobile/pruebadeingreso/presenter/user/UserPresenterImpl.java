@@ -1,5 +1,7 @@
 package co.com.ceiba.mobile.pruebadeingreso.presenter.user;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 
 import co.com.ceiba.mobile.pruebadeingreso.interfaces.user.UserInteractor;
@@ -12,10 +14,12 @@ public class UserPresenterImpl implements UserPresenter {
 
     UserView view;
     UserInteractor interactor;
+    Context context;
 
-    public UserPresenterImpl(UserView view) {
+    public UserPresenterImpl(UserView view, Context context) {
         this.view = view;
-        this.interactor = new UserInteractorImpl(this);
+        this.context = context;
+        this.interactor = new UserInteractorImpl(this, context);
     }
 
     @Override

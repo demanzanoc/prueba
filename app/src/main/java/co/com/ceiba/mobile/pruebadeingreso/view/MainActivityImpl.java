@@ -35,12 +35,12 @@ public class MainActivityImpl extends Activity implements UserView {
         editTextSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                //
+                //Unnecessary
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                //
+                //Unnecessary
             }
 
             @Override
@@ -54,7 +54,7 @@ public class MainActivityImpl extends Activity implements UserView {
         context = getApplicationContext();
         editTextSearch = findViewById(R.id.editTextSearch);
         recyclerViewSearchResults = findViewById(R.id.recyclerViewSearchResults);
-        presenter = new UserPresenterImpl(this);
+        presenter = new UserPresenterImpl(this, context);
         presenter.getUsers();
     }
 

@@ -1,4 +1,4 @@
-package co.com.ceiba.mobile.pruebadeingreso.database.user;
+package co.com.ceiba.mobile.pruebadeingreso.database.dao;
 
 import androidx.room.Dao;
 import androidx.room.Insert;

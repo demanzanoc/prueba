@@ -1,41 +1,62 @@
 package co.com.ceiba.mobile.pruebadeingreso.model.user;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+@Entity
 public class User {
 
-    private String id;
-    private String name;
-    private String email;
-    private String phone;
+    @PrimaryKey
+    @NonNull
+    @SerializedName("id")
+    @Expose
+    private String userId;
 
-    public String getId() {
-        return id;
+    @SerializedName("name")
+    @Expose
+    private String userName;
+
+    @SerializedName("email")
+    @Expose
+    private String userEmail;
+
+    @SerializedName("phone")
+    @Expose
+    private String userPhone;
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getName() {
-        return name;
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public String getUserName() {
+        return userName;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getUserEmail() {
+        return userEmail;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public String getUserPhone() {
+        return userPhone;
     }
 }

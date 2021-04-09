@@ -15,11 +15,11 @@ import co.com.ceiba.mobile.pruebadeingreso.model.user.User;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
 
-    private List<User> listUsers;
+    private List<User> usersList;
     private LayoutInflater userInflater;
 
     public UserAdapter(List<User> listUsers, Context context) {
-        this.listUsers = listUsers;
+        this.usersList = listUsers;
         this.userInflater = LayoutInflater.from(context);
     }
 
@@ -32,12 +32,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull UserAdapter.UserViewHolder holder, int position) {
-        holder.bindData(listUsers.get(position));
+        holder.bindData(usersList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return listUsers.size();
+        return usersList.size();
     }
 
     public static class UserViewHolder extends RecyclerView.ViewHolder{
@@ -53,9 +53,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         }
 
         void bindData(final User user){
-            userName.setText(user.getName());
-            userPhone.setText(user.getPhone());
-            userEmail.setText(user.getEmail());
+            userName.setText(user.getUserName());
+            userPhone.setText(user.getUserPhone());
+            userEmail.setText(user.getUserEmail());
         }
     }
 }
