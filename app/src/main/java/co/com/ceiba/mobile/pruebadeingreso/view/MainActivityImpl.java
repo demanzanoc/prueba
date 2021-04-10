@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import co.com.ceiba.mobile.pruebadeingreso.R;
@@ -26,6 +27,7 @@ public class MainActivityImpl extends Activity implements UserView {
     EditText editTextSearch;
     RecyclerView recyclerViewSearchResults;
     UserPresenter presenter;
+    ArrayList<User> usersList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +46,8 @@ public class MainActivityImpl extends Activity implements UserView {
             }
 
             @Override
-            public void afterTextChanged(Editable editable) {
-                Toast.makeText(context, "" + editable, Toast.LENGTH_SHORT).show();
+            public void afterTextChanged(Editable filter) {
+                userFilter(filter.toString());
             }
         });
     }
@@ -58,6 +60,17 @@ public class MainActivityImpl extends Activity implements UserView {
         presenter.getUsersFromDatabase();
     }
 
+    private void userFilter(String filter) {
+        ArrayList<User> userFilter = new ArrayList<>();
+        for (User user : usersList) {
+            if (user.getUserName().toLowerCase().contains(filter.toLowerCase())) {
+                userFilter.add(user);
+            }
+        }
+        UserAdapter userAdapter = new UserAdapter(userFilter, context);
+        recyclerViewSearchResults.setAdapter(userAdapter);
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -65,9 +78,10 @@ public class MainActivityImpl extends Activity implements UserView {
 
     @Override
     public void showUsers(ArrayList<User> usersList) {
+        this.usersList = usersList;
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        UserAdapter userAdapter = new UserAdapter(usersList, context);
+        UserAdapter userAdapter = new UserAdapter(this.usersList, context);
         recyclerViewSearchResults.setLayoutManager(linearLayoutManager);
         recyclerViewSearchResults.setAdapter(userAdapter);
     }
