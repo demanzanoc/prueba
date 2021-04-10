@@ -21,13 +21,12 @@ import co.com.ceiba.mobile.pruebadeingreso.model.adapter.UserAdapter;
 import co.com.ceiba.mobile.pruebadeingreso.model.user.User;
 import co.com.ceiba.mobile.pruebadeingreso.presenter.user.UserPresenterImpl;
 
-public class MainActivityImpl extends Activity implements UserView {
+public class MainActivityView extends Activity implements UserView {
 
-    Context context;
-    EditText editTextSearch;
-    RecyclerView recyclerViewSearchResults;
-    UserPresenter presenter;
-    ArrayList<User> usersList;
+    private Context context;
+    private EditText editTextSearch;
+    private RecyclerView recyclerViewSearchResults;
+    private ArrayList<User> usersList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +55,7 @@ public class MainActivityImpl extends Activity implements UserView {
         context = getApplicationContext();
         editTextSearch = findViewById(R.id.editTextSearch);
         recyclerViewSearchResults = findViewById(R.id.recyclerViewSearchResults);
-        presenter = new UserPresenterImpl(this, context);
+        UserPresenter presenter = new UserPresenterImpl(this, context);
         presenter.getUsersFromDatabase();
     }
 

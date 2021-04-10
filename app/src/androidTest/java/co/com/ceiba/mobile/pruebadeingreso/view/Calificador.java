@@ -34,7 +34,7 @@ import static org.hamcrest.Matchers.endsWith;
 public class Calificador {
 
     @Rule
-    public ActivityTestRule<MainActivityImpl> mActivityTestRule = new ActivityTestRule<>(MainActivityImpl.class);
+    public ActivityTestRule<MainActivityView> mActivityTestRule = new ActivityTestRule<>(MainActivityView.class);
 
     private static Matcher<View> childAtPosition(
             final Matcher<View> parentMatcher, final int position) {
