@@ -12,7 +12,7 @@ public class ApiAdapter {
     private static JsonApi jsonApi;
 
     public static JsonApi getDataUser() {
-        if (jsonApi == null){
+        if (jsonApi == null) {
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(Endpoints.URL_BASE)
                     .addConverterFactory(GsonConverterFactory.create())

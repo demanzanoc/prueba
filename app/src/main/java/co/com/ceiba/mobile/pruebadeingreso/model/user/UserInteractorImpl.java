@@ -6,6 +6,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import co.com.ceiba.mobile.pruebadeingreso.R;
 import co.com.ceiba.mobile.pruebadeingreso.database.user.GetUserTaskDB;
 import co.com.ceiba.mobile.pruebadeingreso.database.user.SaveUserTaskDB;
 import co.com.ceiba.mobile.pruebadeingreso.interfaces.user.UserInteractor;
@@ -40,7 +41,7 @@ public class UserInteractorImpl implements UserInteractor, Callback<List<User>> 
             public void result(ArrayList<User> usersList) {
                 if (usersList.isEmpty())
                     getUsersFromApi();
-                else{
+                else {
                     presenter.showUsers(usersList);
                 }
             }
@@ -50,8 +51,7 @@ public class UserInteractorImpl implements UserInteractor, Callback<List<User>> 
     @Override
     public void onResponse(Call<List<User>> call, Response<List<User>> response) {
         if (!response.isSuccessful()) {
-            //Enviamos respuesta de error a UserView
-            presenter.showMessage("Error en la respuesta. Código: " + response.code()); ///---
+            presenter.showMessage(context.getString(R.string.generic_error) + " " + response.code());
         } else {
             usersList = response.body();
             if (usersList != null) {
@@ -59,11 +59,11 @@ public class UserInteractorImpl implements UserInteractor, Callback<List<User>> 
                 new SaveUserTaskDB(context, new SaveUserTaskDB.Callback() {
                     @Override
                     public void result(String result) {
-                        presenter.showMessage(result); ///---
+                        presenter.showMessage(result);
                     }
                 }).execute((ArrayList<User>) usersList);
             } else {
-                Log.e("onResponseUser", "Null response service"); ///---
+                Log.e("onResponseUser", "Null response");
             }
         }
     }

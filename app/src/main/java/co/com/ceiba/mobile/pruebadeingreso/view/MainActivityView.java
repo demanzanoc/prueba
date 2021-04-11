@@ -1,6 +1,5 @@
 package co.com.ceiba.mobile.pruebadeingreso.view;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -70,7 +69,7 @@ public class MainActivityView extends AppCompatActivity implements UserView {
                 userFilter.add(user);
             }
         }
-        if (userFilter.isEmpty()){
+        if (userFilter.isEmpty()) {
             emptyAdapter = new EmptyAdapter();
             recyclerViewSearchResults.setAdapter(emptyAdapter);
         } else {

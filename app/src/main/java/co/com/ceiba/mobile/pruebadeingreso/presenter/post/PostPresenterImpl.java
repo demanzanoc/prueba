@@ -15,12 +15,10 @@ public class PostPresenterImpl implements PostPresenter {
 
     private PostView view;
     private PostInteractor interactor;
-    private Context context;
 
     public PostPresenterImpl(PostView view, Context context) {
         this.view = view;
         this.interactor = new PostInteractorImpl(this, context);
-        this.context = context;
     }
 
     @Override

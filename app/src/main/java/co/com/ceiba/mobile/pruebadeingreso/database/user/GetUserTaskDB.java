@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import co.com.ceiba.mobile.pruebadeingreso.model.user.User;
 
@@ -29,7 +28,7 @@ public class GetUserTaskDB extends AsyncTask<String, Void, ArrayList<User>> {
         callback.result(usersList);
     }
 
-    public interface Callback{
+    public interface Callback {
         void result(ArrayList<User> usersList);
     }
 

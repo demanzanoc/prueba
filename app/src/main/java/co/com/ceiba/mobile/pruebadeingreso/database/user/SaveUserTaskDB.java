@@ -5,9 +5,10 @@ import android.os.AsyncTask;
 
 import java.util.ArrayList;
 
+import co.com.ceiba.mobile.pruebadeingreso.R;
 import co.com.ceiba.mobile.pruebadeingreso.model.user.User;
 
-public class SaveUserTaskDB extends AsyncTask<ArrayList<User>, Void, String>{
+public class SaveUserTaskDB extends AsyncTask<ArrayList<User>, Void, String> {
 
     private Context context;
     private Callback callback;
@@ -20,7 +21,7 @@ public class SaveUserTaskDB extends AsyncTask<ArrayList<User>, Void, String>{
     @Override
     protected String doInBackground(ArrayList<User>... usersList) {
         UserDB.saveUsersDB(context, usersList[0]);
-        return "Datos almacenados con exito";
+        return context.getString(R.string.saved_users_message);
     }
 
     @Override
@@ -29,7 +30,7 @@ public class SaveUserTaskDB extends AsyncTask<ArrayList<User>, Void, String>{
         callback.result(result);
     }
 
-    public interface Callback{
+    public interface Callback {
         void result(String result);
     }
 

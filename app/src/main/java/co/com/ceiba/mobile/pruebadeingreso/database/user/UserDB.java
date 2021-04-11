@@ -9,7 +9,8 @@ import co.com.ceiba.mobile.pruebadeingreso.model.user.User;
 
 public class UserDB {
 
-    public UserDB() {}
+    public UserDB() {
+    }
 
     public static void saveUsersDB(Context context, List<User> usersList) {
         AppDatabase appDatabase = AppDatabase.getInstance(context);
@@ -18,7 +19,7 @@ public class UserDB {
         }
     }
 
-    public static List<User> getUsersDB(Context context){
+    public static List<User> getUsersDB(Context context) {
         return AppDatabase.getInstance(context).userDao().getAll();
     }
 

@@ -6,7 +6,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-import co.com.ceiba.mobile.pruebadeingreso.database.user.SaveUserTaskDB;
+import co.com.ceiba.mobile.pruebadeingreso.R;
 import co.com.ceiba.mobile.pruebadeingreso.interfaces.post.PostInteractor;
 import co.com.ceiba.mobile.pruebadeingreso.interfaces.post.PostPresenter;
 import co.com.ceiba.mobile.pruebadeingreso.model.user.User;
@@ -36,13 +36,13 @@ public class PostInteractorImpl implements PostInteractor, Callback<List<Post>> 
     @Override
     public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
         if (!response.isSuccessful()) {
-            presenter.showMessage("Error en la respuesta. Código: " + response.code());
+            presenter.showMessage(context.getString(R.string.generic_error) + " " + response.code());
         } else {
             postsList = response.body();
             if (postsList != null) {
                 presenter.showUserPosts((ArrayList<Post>) postsList);
             } else {
-                Log.e("onResponsePost", "Null response service");
+                Log.e("onResponsePost", "Null response");
             }
         }
     }

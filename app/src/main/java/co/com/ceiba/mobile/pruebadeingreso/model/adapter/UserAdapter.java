@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.io.Serializable;
 import java.util.List;
 
 import co.com.ceiba.mobile.pruebadeingreso.R;
@@ -62,11 +61,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
                 public void onClick(View view) {
                     Context context = view.getContext();
                     Intent viewPostIntent = new Intent(context, PostActivityView.class);
-                    viewPostIntent.putExtra("User", (Serializable) user);
+                    viewPostIntent.putExtra("User", user);
                     context.startActivity(viewPostIntent);
                 }
             });
-
         }
 
         void bindData(final User user) {
