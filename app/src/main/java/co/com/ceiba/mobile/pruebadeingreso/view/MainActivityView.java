@@ -11,21 +11,23 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 import co.com.ceiba.mobile.pruebadeingreso.R;
 import co.com.ceiba.mobile.pruebadeingreso.interfaces.user.UserPresenter;
 import co.com.ceiba.mobile.pruebadeingreso.interfaces.user.UserView;
+import co.com.ceiba.mobile.pruebadeingreso.model.adapter.EmptyAdapter;
 import co.com.ceiba.mobile.pruebadeingreso.model.adapter.UserAdapter;
 import co.com.ceiba.mobile.pruebadeingreso.model.user.User;
 import co.com.ceiba.mobile.pruebadeingreso.presenter.user.UserPresenterImpl;
+import co.com.ceiba.mobile.pruebadeingreso.utils.DialogCaller;
 
 public class MainActivityView extends Activity implements UserView {
 
     private Context context;
     private EditText editTextSearch;
     private RecyclerView recyclerViewSearchResults;
+    private UserAdapter userAdapter;
+    private EmptyAdapter emptyAdapter;
     private ArrayList<User> usersList;
 
     @Override
@@ -56,6 +58,7 @@ public class MainActivityView extends Activity implements UserView {
         editTextSearch = findViewById(R.id.editTextSearch);
         recyclerViewSearchResults = findViewById(R.id.recyclerViewSearchResults);
         UserPresenter presenter = new UserPresenterImpl(this, context);
+        DialogCaller.showDialog(this);
         presenter.getUsersFromDatabase();
     }
 
@@ -66,7 +69,7 @@ public class MainActivityView extends Activity implements UserView {
                 userFilter.add(user);
             }
         }
-        UserAdapter userAdapter = new UserAdapter(userFilter);
+        userAdapter = new UserAdapter(userFilter);
         recyclerViewSearchResults.setAdapter(userAdapter);
     }
 
@@ -80,13 +83,15 @@ public class MainActivityView extends Activity implements UserView {
         this.usersList = usersList;
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        UserAdapter userAdapter = new UserAdapter(this.usersList);
+        userAdapter = new UserAdapter(this.usersList);
         recyclerViewSearchResults.setLayoutManager(linearLayoutManager);
         recyclerViewSearchResults.setAdapter(userAdapter);
+        DialogCaller.dismissDialog();
     }
 
     @Override
     public void showMessage(String message) {
         Toast.makeText(context, "" + message, Toast.LENGTH_SHORT).show();
+        DialogCaller.dismissDialog();
     }
 }

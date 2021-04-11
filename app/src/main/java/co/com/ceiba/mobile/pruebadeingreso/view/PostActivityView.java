@@ -2,9 +2,7 @@ package co.com.ceiba.mobile.pruebadeingreso.view;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.ConditionVariable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
@@ -15,13 +13,11 @@ import java.util.ArrayList;
 import co.com.ceiba.mobile.pruebadeingreso.R;
 import co.com.ceiba.mobile.pruebadeingreso.interfaces.post.PostPresenter;
 import co.com.ceiba.mobile.pruebadeingreso.interfaces.post.PostView;
-import co.com.ceiba.mobile.pruebadeingreso.interfaces.user.UserPresenter;
 import co.com.ceiba.mobile.pruebadeingreso.model.adapter.PostAdapter;
-import co.com.ceiba.mobile.pruebadeingreso.model.adapter.UserAdapter;
 import co.com.ceiba.mobile.pruebadeingreso.model.post.Post;
 import co.com.ceiba.mobile.pruebadeingreso.model.user.User;
 import co.com.ceiba.mobile.pruebadeingreso.presenter.post.PostPresenterImpl;
-import co.com.ceiba.mobile.pruebadeingreso.presenter.user.UserPresenterImpl;
+import co.com.ceiba.mobile.pruebadeingreso.utils.DialogCaller;
 
 public class PostActivityView extends Activity implements PostView {
 
@@ -49,10 +45,10 @@ public class PostActivityView extends Activity implements PostView {
         userPostsResults = findViewById(R.id.recyclerViewPostsResults);
         postsList = new ArrayList<>();
         PostPresenter presenter = new PostPresenterImpl(this, context);
-
         userName.setText(user.getUserName());
         userPhone.setText(user.getUserPhone());
         userEmail.setText(user.getUserEmail());
+        DialogCaller.showDialog(this);
         presenter.getUserPosts(user);
     }
 
@@ -69,10 +65,12 @@ public class PostActivityView extends Activity implements PostView {
         PostAdapter postAdapter = new PostAdapter(this.postsList);
         userPostsResults.setLayoutManager(linearLayoutManager);
         userPostsResults.setAdapter(postAdapter);
+        DialogCaller.dismissDialog();
     }
 
     @Override
     public void showMessage(String message) {
         Toast.makeText(context, "" + message, Toast.LENGTH_SHORT).show();
+        DialogCaller.dismissDialog();
     }
 }
