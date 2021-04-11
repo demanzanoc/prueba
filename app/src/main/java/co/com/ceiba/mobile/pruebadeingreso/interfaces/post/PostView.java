@@ -8,4 +8,6 @@ public interface PostView {
 
     void showUserPosts(ArrayList<Post> posts);
 
+    void showMessage(String message);
+
 }

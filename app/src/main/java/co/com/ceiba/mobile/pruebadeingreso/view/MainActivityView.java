@@ -66,7 +66,7 @@ public class MainActivityView extends Activity implements UserView {
                 userFilter.add(user);
             }
         }
-        UserAdapter userAdapter = new UserAdapter(userFilter, context);
+        UserAdapter userAdapter = new UserAdapter(userFilter);
         recyclerViewSearchResults.setAdapter(userAdapter);
     }
 
@@ -80,7 +80,7 @@ public class MainActivityView extends Activity implements UserView {
         this.usersList = usersList;
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        UserAdapter userAdapter = new UserAdapter(this.usersList, context);
+        UserAdapter userAdapter = new UserAdapter(this.usersList);
         recyclerViewSearchResults.setLayoutManager(linearLayoutManager);
         recyclerViewSearchResults.setAdapter(userAdapter);
     }

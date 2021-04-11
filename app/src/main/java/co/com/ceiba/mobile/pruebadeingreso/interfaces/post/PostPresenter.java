@@ -11,4 +11,6 @@ public interface PostPresenter {
 
     void getUserPosts(User user);
 
+    void showMessage(String message);
+
 }

@@ -24,12 +24,17 @@ public class PostPresenterImpl implements PostPresenter {
     }
 
     @Override
-    public void showUserPosts(ArrayList<Post> posts) {
-
+    public void showUserPosts(ArrayList<Post> postsList) {
+        view.showUserPosts(postsList);
     }
 
     @Override
     public void getUserPosts(User user) {
         interactor.getUserPosts(user);
+    }
+
+    @Override
+    public void showMessage(String message) {
+        view.showMessage(message);
     }
 }

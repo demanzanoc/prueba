@@ -20,17 +20,15 @@ import co.com.ceiba.mobile.pruebadeingreso.view.PostActivityView;
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
 
     private List<User> usersList;
-    private LayoutInflater userInflater;
 
-    public UserAdapter(List<User> listUsers, Context context) {
+    public UserAdapter(List<User> listUsers) {
         this.usersList = listUsers;
-        this.userInflater = LayoutInflater.from(context);
     }
 
     @NonNull
     @Override
     public UserAdapter.UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = userInflater.inflate(R.layout.user_list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_list_item, parent, false);
         return new UserAdapter.UserViewHolder(view);
     }
 
@@ -62,9 +60,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
                 @Override
                 public void onClick(View view) {
                     Context context = view.getContext();
-                    Intent intent = new Intent(context, PostActivityView.class);
-                    intent.putExtra("User", (Serializable) user);
-                    context.startActivity(intent);
+                    Intent viewPostIntent = new Intent(context, PostActivityView.class);
+                    viewPostIntent.putExtra("User", (Serializable) user);
+                    context.startActivity(viewPostIntent);
                 }
             });
 
