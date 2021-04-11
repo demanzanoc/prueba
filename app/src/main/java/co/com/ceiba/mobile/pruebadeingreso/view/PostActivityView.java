@@ -3,6 +3,7 @@ package co.com.ceiba.mobile.pruebadeingreso.view;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
@@ -19,7 +20,7 @@ import co.com.ceiba.mobile.pruebadeingreso.model.user.User;
 import co.com.ceiba.mobile.pruebadeingreso.presenter.post.PostPresenterImpl;
 import co.com.ceiba.mobile.pruebadeingreso.utils.DialogCaller;
 
-public class PostActivityView extends Activity implements PostView {
+public class PostActivityView extends AppCompatActivity implements PostView {
 
     private Context context;
     private TextView userName;

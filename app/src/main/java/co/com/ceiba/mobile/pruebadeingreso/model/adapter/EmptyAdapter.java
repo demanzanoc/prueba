@@ -25,7 +25,7 @@ public class EmptyAdapter extends RecyclerView.Adapter<EmptyAdapter.EmtyViewHold
 
     @Override
     public int getItemCount() {
-        return 0;
+        return 1;
     }
 
     public static class EmtyViewHolder extends RecyclerView.ViewHolder {

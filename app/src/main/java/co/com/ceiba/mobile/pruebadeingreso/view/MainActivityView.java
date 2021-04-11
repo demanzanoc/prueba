@@ -3,6 +3,7 @@ package co.com.ceiba.mobile.pruebadeingreso.view;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -21,7 +22,7 @@ import co.com.ceiba.mobile.pruebadeingreso.model.user.User;
 import co.com.ceiba.mobile.pruebadeingreso.presenter.user.UserPresenterImpl;
 import co.com.ceiba.mobile.pruebadeingreso.utils.DialogCaller;
 
-public class MainActivityView extends Activity implements UserView {
+public class MainActivityView extends AppCompatActivity implements UserView {
 
     private Context context;
     private EditText editTextSearch;
@@ -69,8 +70,14 @@ public class MainActivityView extends Activity implements UserView {
                 userFilter.add(user);
             }
         }
-        userAdapter = new UserAdapter(userFilter);
-        recyclerViewSearchResults.setAdapter(userAdapter);
+        if (userFilter.isEmpty()){
+            emptyAdapter = new EmptyAdapter();
+            recyclerViewSearchResults.setAdapter(emptyAdapter);
+        } else {
+            userAdapter = new UserAdapter(userFilter);
+            recyclerViewSearchResults.setAdapter(userAdapter);
+        }
+
     }
 
     @Override
